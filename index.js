@@ -1,5 +1,5 @@
 const options = ["scissors", "rock", "papper"];
-const gameVal = 5;
+var gameVal = 5;
 var pScore = 0;
 var cScore = 0;
 

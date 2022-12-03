@@ -5,15 +5,13 @@ var cScore = 0;
 
 function game() {
 
-    var playerSelection = 0;
     var computerSelection = 0;
     console.log("Let's begin");
     for (let i = 0; i < gameVal; i++) {
         computerSelection = Math.floor(Math.random() * 3);
         let selection = prompt("Let's choose").toLowerCase();
         if (/scissors|rock|papper/.test(selection)) {
-            playerSelection = options.indexOf(selection);
-            result = playRound(playerSelection, computerSelection);
+            result = playRound(selection, options[computerSelection]);
             console.log(result);
         }
         else
@@ -23,15 +21,17 @@ function game() {
 };
 
 function playRound(playerSelection, computerSelection) {
-    if ((playerSelection > computerSelection) || (playerSelection == 0 && computerSelection == 2)) {
+    if ((playerSelection === "scissors" && computerSelection === "papper")
+        || (playerSelection === "papper" && computerSelection === "rock")
+        || (playerSelection === "rock" && computerSelection === "scissors")) {
         pScore += 1
-        return (`The Player Wins, ${options[playerSelection]} beats ${options[computerSelection]}`);
+        return (`The Player Wins, ${playerSelection} beats ${computerSelection}`);
     }
     else if (playerSelection === computerSelection)
         return (`It's a tie`)
     else {
         cScore += 1;
-        return (`The computer Wins, ${options[computerSelection]} beats ${options[playerSelection]}`);
+        return (`The computer Wins, ${computerSelection} beats ${playerSelection}`);
     }
 }
 
